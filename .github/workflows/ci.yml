@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build, test and lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      # Until the Android project exists there is nothing to build; the job stays green.
+      - name: Check for Gradle project
+        id: projekt
+        run: |
+          if [ -f gradlew ]; then echo "vorhanden=true" >> "$GITHUB_OUTPUT"; else echo "vorhanden=false" >> "$GITHUB_OUTPUT"; echo "No Gradle project yet – skipping build."; fi
+
+      - name: Set up JDK
+        if: steps.projekt.outputs.vorhanden == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        if: steps.projekt.outputs.vorhanden == 'true'
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build, unit tests and lint
+        if: steps.projekt.outputs.vorhanden == 'true'
+        run: ./gradlew --no-daemon assembleDebug test lint
