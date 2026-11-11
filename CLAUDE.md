@@ -39,7 +39,13 @@ the maintainer asking for it; the stack in the README is a proposal.
   messages and this repo's docs are in English.
 - Accessibility is part of every feature: TalkBack content descriptions,
   scalable text (sp), sufficient contrast, dark theme, touch targets ≥ 48 dp.
-- **Design: follow [`docs/design.md`](docs/design.md).**
+- **Design: follow the shared design document
+  [FuelStat/fuelstat `docs/design.md`](https://github.com/FuelStat/fuelstat/blob/main/docs/design.md)**
+  (single source of truth for colour, type, spacing and radius tokens,
+  components, platform guardrails, accessibility) **and
+  [`docs/design.md`](docs/design.md)** here for the Material 3/Compose
+  specifics. Token values are changed in the shared document first, never only
+  here.
 - Security: token only in Android Keystore–backed storage, never in logs;
   HTTPS only (no cleartext traffic, `networkSecurityConfig`); exported
   components only where needed; `android:allowBackup` reviewed.
@@ -82,7 +88,8 @@ the iOS app.
 - README "Status"/"Current state" matches what the app can do.
 - API gaps have an issue in FuelStat/fuelstat (no workaround calculations).
 - New user-facing text in `strings.xml` (German).
-- New screens follow `docs/design.md`.
+- New screens follow the shared design document (FuelStat/fuelstat
+  `docs/design.md`) and `docs/design.md` here.
 - New logic has unit tests; CI is green.
 
 ## Workflow
