@@ -33,3 +33,12 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Signing configuration and secrets (never commit)
+keystore.properties
+secrets.properties
+*.p12
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
