@@ -59,7 +59,9 @@ Build and test:
 ```
 
 Rules for contributors and AI agents are in [`CLAUDE.md`](CLAUDE.md); the
-design direction is in [`docs/design.md`](docs/design.md).
+shared design is in
+[FuelStat/fuelstat `docs/design.md`](https://github.com/FuelStat/fuelstat/blob/main/docs/design.md),
+the Android specifics in [`docs/design.md`](docs/design.md).
 
 ## Security
 

@@ -1,56 +1,73 @@
 # Fuelstat Android – design
 
-How the app should look and feel. The iOS app's
-[`docs/design.md`](https://github.com/FuelStat/fuelstat-ios/blob/main/docs/design.md)
-defines the product direction; this file translates it to Android. Where both
-differ, follow the platform: the app should feel like an Android app, not an
-iOS port.
+**The shared design lives in
+[FuelStat/fuelstat `docs/design.md`](https://github.com/FuelStat/fuelstat/blob/main/docs/design.md)**
+(German): direction, brand, colour tokens with light and dark values, type
+roles, spacing grid, radii, shared components, platform guardrails and the
+accessibility baseline. It is the single source of truth for Web/PWA, iOS and
+Android (FuelStat/fuelstat#153). Never define a token value here; change it
+there first, then in the Compose theme.
 
-## Direction
-
-**Calm, card-based, photo-forward, one strong colour** – same principles as
-iOS:
-
-1. **The vehicle is the hero.** Its photo and name anchor every vehicle screen.
-2. **Numbers first.** Consumption, cost per km and the next due date are shown
-   big and early, without tapping.
-3. **One tap to log.** Logging a fill-up or charging session is always one tap
-   away.
-4. **Native, not a web page.** Material 3 components, Material Symbols, system
-   font, edge-to-edge, predictive back.
+This file only covers what is specific to Android: how the shared design is
+built with Material 3 and Jetpack Compose. Where Material and the shared
+document differ in *behaviour*, follow the platform – the app should feel like
+an Android app, not an iOS port. Colours, spacing, radii and type roles always
+come from the shared document.
 
 ## Navigation
 
-- Navigation bar with the same four destinations as iOS: **Start · Einträge ·
-  Statistik · Profil**, plus a floating action button "+" for quick entry on
-  Start and Einträge.
+- Navigation bar with the shared destinations **Start · Einträge · Statistik ·
+  Profil**, plus a floating action button "+" (`Brand`, content description
+  "Eintrag erfassen") for quick entry on Start and Einträge.
+- Large screens and foldables (≥ 600 dp): navigation rail and list–detail
+  layouts.
 - Vehicle switcher at the top of Start/Einträge/Statistik; the choice is
   remembered.
 - Entry forms as full-screen dialogs or modal bottom sheets; destructive
-  actions with confirmation or undo snackbar.
-- Large screens and foldables: navigation rail and list–detail layouts.
+  actions with confirmation or an undo snackbar.
+- Edge-to-edge with transparent system bars; predictive back on every screen.
 
-## Colour and theme
+## Theme (Compose)
 
-- Material 3 colour scheme derived from the Fuelstat brand colour (dark navy
-  anchor, one strong accent), light and dark.
-- Dynamic colour (Android 12+) optional and off by default, so the brand stays
-  recognisable; to be decided when development starts.
-- Purpose colours (fuel, charging, expenses, private/business/commute trips)
-  match the web app and iOS.
+All values come from the shared token table ("Token-Zuordnung je Plattform").
 
-## Typography, spacing, components
+- **Colour scheme:** `lightColorScheme`/`darkColorScheme` built from the
+  tokens: `primary` = `Brand`, `onPrimary` = `OnBrand`, `background`/`surface`
+  = `Background`, `surfaceContainerLow` = `Card`, `secondaryContainer` =
+  `CardTint`, `onSecondaryContainer` = `BrandDeep`, `onBackground`/`onSurface`
+  = `Text`, `onSurfaceVariant` = `TextSecondary`, `outlineVariant` =
+  `Separator`, `error` = `StatusOverdue`. Remaining Material roles are derived
+  from the nearest token, not picked freely.
+- **Extended colours:** everything without a Material role (`BrandDeep`,
+  status, energy, purpose and trip colours) in `FuelstatColors`, provided via
+  `CompositionLocal`, light and dark.
+- **Dynamic colour (Material You): off**, so the brand stays recognisable.
+- **Spacing:** `FuelstatSpacing.xxs` … `xl` (4, 8, 12, 16, 24, 32 dp).
+- **Shapes:** `shapes.large` = `radiusCard` (20 dp), `shapes.medium` =
+  `radiusTile` (14 dp); chips and badges `CircleShape`.
+- **Typography:** Material type scale in `sp` with the system font, mapped
+  from the shared type roles (`screenTitle` → `headlineMedium`, `figure` →
+  `titleLarge`, `body` → `bodyLarge`, `label` → `bodyMedium`, `footnote` →
+  `bodySmall` …). Figures with tabular digits (`fontFeatureSettings = "tnum"`).
+  No fixed heights for text containers.
 
-- Material type scale in `sp`, respects the system font size; no fixed heights
-  for text containers.
-- Spacing in multiples of 4 dp; cards with large corner radius, consistent
-  with iOS.
-- Shared components (vehicle hero, key figure tile, entry row, due-date chip,
-  empty state) live in one design package and are reused everywhere.
+## Android specifics
+
+- **Icons:** Material Symbols (Rounded).
+- **Feedback:** ripple on every tappable element; haptics sparingly; snackbar
+  with "Rückgängig" after deleting.
+- **Lists:** swipe or long press for actions.
+- **Components:** the shared building blocks (vehicle hero, stat tile, entry
+  row, status badge, filter chips, empty state …) live in one design package
+  and are reused everywhere; same names as in the shared document.
+- **Charts:** a text alternative (summary sentence plus values as a list) for
+  TalkBack.
 
 ## Accessibility
 
+The shared baseline applies; on Android in particular:
+
 - Every icon-only control has a content description.
 - Touch targets at least 48 × 48 dp.
-- Contrast checked in light and dark theme.
-- Charts have a text alternative (summary or table).
+- Text in `sp`, layouts tested at the largest system font size.
+- Contrast checked in light and dark theme with the token values.
