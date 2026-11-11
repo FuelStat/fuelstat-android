@@ -4,8 +4,9 @@ Native Android app for Fuelstat (Kotlin, Jetpack Compose). The backend and the
 web app live in [FuelStat/fuelstat](https://github.com/FuelStat/fuelstat), the
 iOS app in [FuelStat/fuelstat-ios](https://github.com/FuelStat/fuelstat-ios).
 
-**Status: planning, no app code yet.** Do not start the app project without
-the maintainer asking for it; the stack in the README is a proposal.
+**Status: early development (0.1.0, skeleton).** The project builds; sign-in
+and the vehicle list work, everything else is still to come. The stack is
+described in the README.
 
 ## Scope and goal
 
@@ -47,9 +48,19 @@ the maintainer asking for it; the stack in the README is a proposal.
   `local.properties`, `google-services.json`).
 - No tracking, analytics, ads or third-party SDKs that send data elsewhere.
 
+## Project layout
+
+- `app/` – Android app (package `org.fuelstat.android`): `data/` (session,
+  Keystore-encrypted token), `design/` (theme, colour and spacing tokens,
+  shared components), `ui/` (screens and ViewModels, one package per area)
+- `core/` – plain Kotlin/JVM module (package `org.fuelstat.core`): API client
+  (`api/FuelstatApi.kt`, OkHttp + kotlinx.serialization), API models, server
+  addresses, image cache keys. Put pure logic here, with unit tests.
+- `gradle/libs.versions.toml` – all dependency versions (Dependabot updates them)
+
 ## Build and test
 
-Once the project exists:
+Requires JDK 17+ and the Android SDK (`ANDROID_HOME` or `local.properties`).
 
 ```sh
 ./gradlew assembleDebug
@@ -57,9 +68,15 @@ Once the project exists:
 ./gradlew lint
 ```
 
-Put pure logic (parsing, formatting, things that are not the API's job) in a
-plain Kotlin module so it can be unit-tested without an emulator. Run tests and
+Put pure logic (parsing, formatting, things that are not the API's job) in
+`core/` so it can be unit-tested without an emulator. Run tests and
 lint before every PR; CI (`.github/workflows/ci.yml`) runs the same.
+
+**Cloud sessions run on Linux** without an emulator. The SDK can be installed
+there (`commandlinetools` from dl.google.com, then `platforms;android-37.0`,
+`build-tools;37.0.0`), so `assembleDebug`, `test` and `lint` run; UI changes
+still need a check on an emulator or device – say so in the PR. If Maven
+Central answers 429, retry with `--max-workers=1`.
 
 ## Release process
 
@@ -68,7 +85,7 @@ the iOS app.
 
 - `versionName` (Semantic Versioning, `0.x` during the beta) is what users see;
   `versionCode` must increase with every build that leaves a developer's
-  machine (Play testing tracks, Play Store).
+  machine (Play testing tracks, Play Store). Both are in `app/build.gradle.kts`.
 - **App releases do not bump the backend.** If a release needs a new API
   feature, the backend release (FuelStat/fuelstat, `docs/betrieb.md`) must be
   tagged and deployed first – check `GET /api/v1/health`.

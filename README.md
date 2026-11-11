@@ -8,26 +8,38 @@ dates, a trip logbook and sharing vehicles with other accounts.
 
 ## Status
 
-**Planning – no app code yet.** This repository holds the groundwork
-(documentation, rules, CI scaffolding). Development starts once the iOS app
-has reached a stable feature set; the plan is tracked in
-[FuelStat/fuelstat#147](https://github.com/FuelStat/fuelstat/issues/147)
-(milestone "Later").
+**Early development – version 0.1.0 (skeleton).** The plan is tracked in
+[FuelStat/fuelstat#147](https://github.com/FuelStat/fuelstat/issues/147).
 
-## Planned tech stack
+### Current state
 
-A proposal, to be confirmed when development starts:
+- Sign-in with e-mail and password, two-factor code (TOTP), hosted or
+  self-hosted server (HTTPS only)
+- Session kept on the device; the token is encrypted with an Android Keystore
+  key; expired sessions lead back to the sign-in
+- Navigation Start · Einträge · Statistik · Profil (navigation bar on phones,
+  rail on large screens); "+" button prepared
+- Start: list of the account's vehicles (pull to refresh)
+- Profil: account, server, app version, sign out
+- Light and dark theme with the Fuelstat colours, German UI
 
-- Kotlin, Jetpack Compose, Material 3 (dynamic colour, dark theme)
-- minSdk 26 (Android 8.0), targetSdk = latest stable API level
-- Gradle Kotlin DSL with a version catalog (`gradle/libs.versions.toml`)
-- Networking: Ktor client or Retrofit + OkHttp, kotlinx.serialization
-- Storage: DataStore for settings, Room for the offline queue,
-  the token in Android Keystore–backed encrypted storage
-- Architecture: single activity, Compose Navigation, ViewModels,
-  coroutines/Flow; pure logic in a separate Kotlin module with unit tests
-- Optional later: widgets (Glance), App Shortcuts, Android Auto,
-  managed configurations (AppConfig, see
+Not yet: entries, fill-ups and charging, statistics, vehicle details and
+editing, photos, offline queue, widgets – see the iOS feature reference
+[FuelStat/fuelstat-ios#15](https://github.com/FuelStat/fuelstat-ios/issues/15).
+
+## Tech stack
+
+- Kotlin, Jetpack Compose, Material 3 (dynamic colour off, brand colours)
+- minSdk 26 (Android 8.0), compileSdk/targetSdk 37
+- Gradle Kotlin DSL with a version catalog (`gradle/libs.versions.toml`),
+  Android Gradle Plugin 9 (built-in Kotlin)
+- Networking: OkHttp + kotlinx.serialization in the plain Kotlin module
+  `core` (unit-tested with MockWebServer)
+- Storage: DataStore; the token encrypted with an Android Keystore key
+- Architecture: single activity, Navigation Compose with type-safe routes,
+  ViewModels, coroutines/Flow; manual dependency injection (`AppContainer`)
+- Planned: Room for the offline queue, widgets (Glance), App Shortcuts,
+  Android Auto, managed configurations (AppConfig, see
   [FuelStat/fuelstat-ios#47](https://github.com/FuelStat/fuelstat-ios/issues/47))
 
 ## Backend
@@ -44,13 +56,15 @@ entered on the sign-in screen.
 
 ## Development
 
-Requirements (once the project exists):
+Requirements:
 
-- Android Studio (current stable) with the Android SDK
+- Android Studio (current stable) with the Android SDK (API 37)
 - JDK 17 or later
 - A Fuelstat account (hosted or self-hosted)
 
-Build and test:
+Open the project folder in Android Studio and run the `app` configuration, or
+from the command line (debug builds install as `org.fuelstat.android.debug`,
+next to a release build):
 
 ```sh
 ./gradlew assembleDebug
