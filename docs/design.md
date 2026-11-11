@@ -16,9 +16,12 @@ come from the shared document.
 
 ## Navigation
 
-- Navigation bar with the shared destinations **Start · Einträge · Statistik ·
-  Profil**, plus a floating action button "+" (`Brand`, content description
-  "Eintrag erfassen") for quick entry on Start and Einträge.
+- Navigation bar with exactly the four shared destinations **Start ·
+  Einträge · Statistik · Profil** – no "+" inside the bar – plus a floating
+  action button "+" (`Brand`, content description "Eintrag erfassen") for
+  quick entry on Start and Einträge. One "+" per screen, never both.
+- Number inputs (odometer, quantity, price, amount) use `NumberField`;
+  `CodeField` is for the 2FA code only.
 - Large screens and foldables (≥ 600 dp): navigation rail and list–detail
   layouts.
 - Vehicle switcher at the top of Start/Einträge/Statistik; the choice is
