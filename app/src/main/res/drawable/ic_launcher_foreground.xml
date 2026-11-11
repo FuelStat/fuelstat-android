@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Placeholder icon: fuel gauge on navy, in the spirit of the iOS app icon. Content stays in the 66 dp safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <path
+      android:pathData="M32,64 A22,22 0 1,1 76,64"
+      android:strokeColor="@color/brand_teal"
+      android:strokeWidth="6"
+      android:strokeLineCap="round" />
+  <path
+      android:pathData="M54,62 L67,47"
+      android:strokeColor="#FFFFFF"
+      android:strokeWidth="5"
+      android:strokeLineCap="round" />
+  <path
+      android:pathData="M54,62 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"
+      android:fillColor="#FFFFFF" />
+</vector>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name" translatable="false">Fuelstat</string>
+
+  <!-- Sign-in -->
+  <string name="login_title">Willkommen bei Fuelstat</string>
+  <string name="login_subtitle">Tankfüllungen, Ladevorgänge und Kosten deiner Fahrzeuge an einem Ort.</string>
+  <string name="login_email">E-Mail-Adresse</string>
+  <string name="login_password">Passwort</string>
+  <string name="login_show_password">Passwort anzeigen</string>
+  <string name="login_hide_password">Passwort verbergen</string>
+  <string name="login_server">Server</string>
+  <string name="login_server_hint">Für eine eigene Installation die Adresse eintragen, z. B. tanken.example.de</string>
+  <string name="login_server_change">Anderen Server verwenden</string>
+  <string name="login_submit">Anmelden</string>
+  <string name="login_mfa_title">Zwei-Faktor-Code</string>
+  <string name="login_mfa_text">Gib den 6-stelligen Code aus deiner Authenticator-App ein.</string>
+  <string name="login_mfa_code">Code</string>
+  <string name="login_mfa_submit">Bestätigen</string>
+  <string name="login_mfa_cancel">Abbrechen</string>
+
+  <!-- Errors (API error codes, see docs/api.md) -->
+  <string name="error_invalid_server">Bitte eine gültige HTTPS-Adresse eingeben.</string>
+  <string name="error_missing_credentials">Bitte E-Mail-Adresse und Passwort eingeben.</string>
+  <string name="error_invalid_credentials">E-Mail-Adresse oder Passwort ist falsch.</string>
+  <string name="error_invalid_mfa_code">Der Code ist falsch oder wurde schon verwendet.</string>
+  <string name="error_invalid_mfa_token">Die Anmeldung ist abgelaufen. Bitte noch einmal anmelden.</string>
+  <string name="error_too_many_attempts">Zu viele Versuche. Bitte in 15 Minuten erneut probieren.</string>
+  <string name="error_network">Keine Verbindung zum Server. Bitte Internetverbindung und Serveradresse prüfen.</string>
+  <string name="error_invalid_response">Der Server hat unerwartet geantwortet. Ist das ein Fuelstat-Server?</string>
+  <string name="error_server">Auf dem Server ist ein Fehler aufgetreten. Bitte später erneut versuchen.</string>
+  <string name="error_session_ended">Deine Anmeldung ist abgelaufen. Bitte melde dich erneut an.</string>
+  <string name="error_generic">Etwas ist schiefgelaufen (%1$s).</string>
+  <string name="retry">Erneut versuchen</string>
+
+  <!-- Navigation -->
+  <string name="nav_start">Start</string>
+  <string name="nav_entries">Einträge</string>
+  <string name="nav_stats">Statistik</string>
+  <string name="nav_profile">Profil</string>
+  <string name="action_add_entry">Eintrag hinzufügen</string>
+  <string name="coming_soon">Kommt in einer der nächsten Versionen.</string>
+
+  <!-- Start -->
+  <string name="start_vehicles">Deine Fahrzeuge</string>
+  <string name="start_empty_title">Noch keine Fahrzeuge</string>
+  <string name="start_empty_text">Lege dein erstes Fahrzeug an, um Tankfüllungen und Kosten zu erfassen.</string>
+  <string name="vehicle_plate">Kennzeichen %1$s</string>
+
+  <!-- Placeholders -->
+  <string name="entries_title">Einträge</string>
+  <string name="entries_placeholder">Hier erscheinen bald deine Tankfüllungen, Ladevorgänge und Ausgaben.</string>
+  <string name="stats_title">Statistik</string>
+  <string name="stats_placeholder">Hier erscheinen bald Verbrauch, Kosten und Diagramme deiner Fahrzeuge.</string>
+
+  <!-- Profile -->
+  <string name="profile_account">Konto</string>
+  <string name="profile_server">Server</string>
+  <string name="profile_version">App-Version</string>
+  <string name="profile_logout">Abmelden</string>
+  <string name="profile_logout_confirm_title">Abmelden?</string>
+  <string name="profile_logout_confirm_text">Deine Daten bleiben auf dem Server. Du kannst dich jederzeit wieder anmelden.</string>
+  <string name="cancel">Abbrechen</string>
+  <string name="loading">Wird geladen …</string>
+
+  <!-- Fuel types (API values) -->
+  <string name="fuel_diesel">Diesel</string>
+  <string name="fuel_e5">Super E5</string>
+  <string name="fuel_e10">Super E10</string>
+  <string name="fuel_lpg">Autogas (LPG)</string>
+  <string name="fuel_cng">Erdgas (CNG)</string>
+  <string name="fuel_electric">Elektro</string>
+  <string name="fuel_hybrid">Hybrid</string>
+  <string name="fuel_phev">Plug-in-Hybrid</string>
+  <string name="fuel_hydrogen">Wasserstoff</string>
+  <string name="fuel_other">Sonstige</string>
+</resources>

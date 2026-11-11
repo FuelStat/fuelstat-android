@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Window and launcher colours; the Compose colour scheme lives in design/Color.kt. -->
+  <color name="brand_navy">#0A1C33</color>
+  <color name="brand_teal">#5ED3CF</color>
+  <color name="window_background">#F2F6F8</color>
+</resources>
