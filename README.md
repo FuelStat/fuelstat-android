@@ -9,7 +9,8 @@ dates, a trip logbook and sharing vehicles with other accounts.
 ## Status
 
 **Early development – version 0.1.0 (skeleton).** The plan is tracked in
-[FuelStat/fuelstat#147](https://github.com/FuelStat/fuelstat/issues/147).
+[FuelStat/fuelstat#147](https://github.com/FuelStat/fuelstat/issues/147); the feature
+list is [#7](https://github.com/FuelStat/fuelstat-android/issues/7), see "Roadmap" below.
 
 ### Current state
 
@@ -53,6 +54,32 @@ entered on the sign-in screen.
   and [`docs/openapi.1.0.0.yaml`](https://github.com/FuelStat/fuelstat/blob/main/docs/openapi.1.0.0.yaml)
 - iOS app (feature reference and design):
   [FuelStat/fuelstat-ios](https://github.com/FuelStat/fuelstat-ios)
+
+## Roadmap
+
+Planning uses the [milestones](https://github.com/FuelStat/fuelstat-android/milestones)
+of this repository, one per app version. The app version is independent of the
+web app/API version and of the iOS app; what the app needs from the API is
+planned in [FuelStat/fuelstat](https://github.com/FuelStat/fuelstat/milestones),
+before the app version that needs it. The full feature list is
+[#7](https://github.com/FuelStat/fuelstat-android/issues/7). The milestones
+have no dates yet.
+
+| Version | Focus |
+|---|---|
+| [0.1.0 - MVP](https://github.com/FuelStat/fuelstat-android/milestone/1) | Everyday core: device session, vehicles, fill-ups, entries, start screen with due dates |
+| [0.2.0 - Foundation](https://github.com/FuelStat/fuelstat-android/milestone/2) | Sign-in and account complete (registration, 2FA, devices, delete account), imprint and privacy, test checklist |
+| [0.3.0 - Capture](https://github.com/FuelStat/fuelstat-android/milestone/3) | Record everything online: charging, expenses, odometer, logbook, editing, search, archive, App Links |
+| [0.4.0 - Insights & Reminders](https://github.com/FuelStat/fuelstat-android/milestone/4) | Statistics, costs, total cost of ownership, service history, local reminders, plan, onboarding, sharing |
+| [0.5.0 - Native](https://github.com/FuelStat/fuelstat-android/milestone/5) | More than the web: offline, app lock, shortcuts, Gemini/Assistant, large screens, Google Play decisions |
+| [0.6.0 - Glance](https://github.com/FuelStat/fuelstat-android/milestone/6) | Widgets, camera recognition, export and report, Android Auto |
+| [1.0.0 - Google Play Store](https://github.com/FuelStat/fuelstat-android/milestone/7) | Parity with the web app: CSV import, push, passkeys, comparison, budget, admin; quality review and Play release |
+| [Later](https://github.com/FuelStat/fuelstat-android/milestone/8) | Live trips, Wear OS, Play Billing, AppConfig, Android Automotive OS, UI tests, documents, fleet |
+
+Guideline: first a complete, reliable app for everyday use, then what only a
+native app can do. Features that need Google Play Services or the Play
+developer account wait for the decision in
+[#38](https://github.com/FuelStat/fuelstat-android/issues/38).
 
 ## Development
 
