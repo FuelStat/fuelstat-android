@@ -54,6 +54,13 @@ described in the README, the plan in [#7](https://github.com/FuelStat/fuelstat-a
   [`docs/design.md`](docs/design.md)** here for the Material 3/Compose
   specifics. Token values are changed in the shared document first, never only
   here.
+- **Structure: one structure for Web, iOS and Android**, defined in section 7
+  of the shared design document (areas, home of every content, glossary).
+  Place every new screen and feature there first: each content has exactly one
+  home, labels come from the glossary (source for `strings.xml`), at most one
+  "＋" per screen. If a content is missing from the table in 7.6, add a row in
+  FuelStat/fuelstat and name it in the PR. This repo's design file only
+  describes how Material 3 and Compose show the structure.
 - Security: token only in Android Keystore–backed storage, never in logs;
   HTTPS only (no cleartext traffic, `networkSecurityConfig`); exported
   components only where needed; `android:allowBackup` reviewed.
@@ -169,6 +176,9 @@ anything still missing:
 - **Strings:** new user-facing text is in `strings.xml` (German).
 - **Design:** new screens follow the shared design document
   (FuelStat/fuelstat `docs/design.md`) and `docs/design.md` here.
+- **Structure:** new screens and features are placed according to section 7
+  of the shared design document (home of every content, glossary terms, one
+  "＋" per screen); no destination, tab or label of its own.
 - **Tests:** new logic in `core/` has tests; CI is green. UI changes were not
   run in the cloud session (no emulator) – say so in the PR instead of
   claiming a device test.

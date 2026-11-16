@@ -16,16 +16,30 @@ come from the shared document.
 
 ## Navigation
 
-- Navigation bar with exactly the four shared destinations **Start ·
-  Einträge · Statistik · Profil** – no "+" inside the bar – plus a floating
-  action button "+" (`Brand`, content description "Eintrag erfassen") for
-  quick entry on Start and Einträge. One "+" per screen, never both.
+**Structure, names and homes of content are defined in the shared document,
+[section 7](https://github.com/FuelStat/fuelstat/blob/main/docs/design.md#7-navigation-und-aufbau)**
+(FuelStat/fuelstat#206): the five areas (7.1), vehicle choice and the extra
+views of a vehicle (7.2), quick entry (7.3), Profil groups (7.4), the glossary
+(7.5, source for `res/values/strings.xml`) and the "home of every content"
+table (7.6). This file only says how Material 3 and Compose show them. Do not
+add destinations, tabs or labels that are not in section 7; put new content in
+the table there first.
+
+| Shared (section 7) | Android |
+|---|---|
+| Leiste: Start · Einträge · ＋ · Statistik · Profil (7.1) | `NavigationBar` with exactly four destinations **Start · Einträge · Statistik · Profil**, no "＋" inside the bar. The "＋" is a floating action button (`Brand`, content description "Eintrag erfassen") on Start and Einträge; one "＋" per screen, never both |
+| Large screens (≥ 600 dp) | `NavigationRail` (the FAB sits in the rail header) and list–detail layouts |
+| Vehicle switcher (7.2) | `VehicleSwitcher` at the top of Start, Einträge and Statistik, opens a modal bottom sheet with the active vehicles and "Fahrzeuge verwalten" (goes to Profil → Fahrzeuge). The choice lives in memory for the session (until the app is restarted); after launch the default vehicle (first in `sortOrder`) is selected |
+| Start with fleet plan (7.2) | With `features.fleet` and two or more active vehicles Start is a list of compact vehicle cards; a tap selects the vehicle and opens its overview. No comparison |
+| Extra views Service · Fahrten · Fahrzeugdaten (7.2) | Detail destinations opened from the "Mehr zum Fahrzeug" rows on Start and from Profil → Fahrzeuge → [vehicle]; at ≥ 600 dp list and detail side by side. No tabs, chips or segments for them |
+| Berichte und Export (7.1, 7.6) | One overflow menu in the top app bar of Einträge |
+| Profil groups (7.4) | Grouped list: Konto, Fahrzeuge, Daten, Benachrichtigungen, Über, Darstellung |
+| Archive (7.2) | Profil → Fahrzeuge → Archiv, read-only |
+
+Android specifics that do not change the structure:
+
 - Number inputs (odometer, quantity, price, amount) use `NumberField`;
   `CodeField` is for the 2FA code only.
-- Large screens and foldables (≥ 600 dp): navigation rail and list–detail
-  layouts.
-- Vehicle switcher at the top of Start/Einträge/Statistik; the choice is
-  remembered.
 - Entry forms as full-screen dialogs or modal bottom sheets; destructive
   actions with confirmation or an undo snackbar.
 - Edge-to-edge with transparent system bars; predictive back on every screen.
