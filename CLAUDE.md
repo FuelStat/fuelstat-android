@@ -179,6 +179,10 @@ anything still missing:
 - **Structure:** new screens and features are placed according to section 7
   of the shared design document (home of every content, glossary terms, one
   "＋" per screen); no destination, tab or label of its own.
+- **States and look:** every new list, card or screen has all states of the
+  shared document (section 8.1: loading, empty, error, offline), texts in the
+  tone of 7.5, and none of the patterns in 1.1 ("AI look"). UI changes come with
+  screenshots in the PR (light and dark theme, default and largest font size).
 - **Tests:** new logic in `core/` has tests; CI is green. UI changes were not
   run in the cloud session (no emulator) – say so in the PR instead of
   claiming a device test.
